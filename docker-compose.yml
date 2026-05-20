@@ -9,8 +9,6 @@ services:
       - .env
     depends_on:
       - mongo
-    networks:
-      - exam_net
 
   mongo:
     image: mongo:7
@@ -19,12 +17,6 @@ services:
       - '27017:27017'
     volumes:
       - mongo_data:/data/db
-    networks:
-      - exam_net
 
 volumes:
   mongo_data:
-
-networks:
-  exam_net:
-    name: exam_net

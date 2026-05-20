@@ -6,7 +6,7 @@ Proyecto base para examen: API backend con autenticación JWT, usuarios, CRUD de
 El stack backend + base de datos ya está preparado. El alumno debe:
 1. Construir su propio frontend.
 2. Dockerizar su frontend.
-3. Conectarlo a este stack mediante un `docker-compose` adicional o extendido usando la red `exam_net`.
+3. Conectarlo al backend publicado en `http://localhost:3000` desde su contenedor/frontend.
 
 ## Requisitos
 - Docker y Docker Compose
@@ -42,7 +42,7 @@ El stack backend + base de datos ya está preparado. El alumno debe:
   - Ejemplo: `FRONTEND_URL=http://localhost:5173,http://localhost:4173`
 
 ## Ejemplo de `docker-compose` del alumno
-Ejemplo mínimo para que el frontend se conecte al backend ya preparado:
+Ejemplo mínimo para que el frontend consuma el backend expuesto en localhost:
 
 ```yaml
 services:
@@ -52,16 +52,10 @@ services:
     ports:
       - '5173:80'
     environment:
-      - VITE_API_URL=http://api:3000
-    networks:
-      - exam_net
-
-networks:
-  exam_net:
-    external: true
+      - VITE_API_URL=http://host.docker.internal:3000
 ```
 
-> Nota: dentro de la red Docker, el backend se resuelve por nombre de servicio `api`.
+> Nota: `host.docker.internal` permite que el contenedor del frontend alcance el backend publicado en el host (`localhost:3000`).
 
 ## Flujo recomendado para examen
 1. Registrar usuario.
