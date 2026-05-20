@@ -16,6 +16,9 @@ export class Product {
 
   @Prop({ required: true, min: 0, default: 0 })
   stock!: number;
+
+  @Prop({ type: [String], default: [] })
+  images!: string[];
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
