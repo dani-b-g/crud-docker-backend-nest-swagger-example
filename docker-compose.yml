@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  api:
+    build: .
+    container_name: products_api
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+    networks:
+      - exam_net
+
+  mongo:
+    image: mongo:7
+    container_name: products_mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - exam_net
+
+volumes:
+  mongo_data:
+
+networks:
+  exam_net:
+    name: exam_net
