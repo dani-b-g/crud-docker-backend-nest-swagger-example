@@ -1,6 +1,6 @@
-# Backend NestJS: CRUD Productos + JWT + Mongo + Swagger
+# Backend NestJS: CRUD Productos + JWT + Mongo + Swagger + MinIO
 
-Proyecto base para examen: API backend con autenticación JWT, usuarios, CRUD de productos y documentación Swagger.
+Proyecto base para examen: API backend con autenticación JWT, usuarios, CRUD de productos, subida de imágenes a MinIO y documentación Swagger.
 
 ## ¿Qué debe hacer el alumno?
 El stack backend + base de datos ya está preparado. El alumno debe:
@@ -23,6 +23,7 @@ El stack backend + base de datos ya está preparado. El alumno debe:
 3. API: `http://localhost:3000`
 4. Swagger: `http://localhost:3000/docs`
 5. Healthcheck: `http://localhost:3000/health`
+6. Consola MinIO: `http://localhost:9001` (user/pass: `minioadmin`)
 
 ## Endpoints principales
 ### Auth
@@ -34,6 +35,7 @@ El stack backend + base de datos ya está preparado. El alumno debe:
 - `GET /products`
 - `GET /products/:id`
 - `PATCH /products/:id`
+- `POST /products/:id/images` (multipart/form-data, campo `image`)
 - `DELETE /products/:id`
 
 ## CORS para frontend del alumno
@@ -61,4 +63,6 @@ services:
 1. Registrar usuario.
 2. Hacer login para obtener `access_token`.
 3. En Swagger usar botón **Authorize** con `Bearer <token>`.
-4. Consumir CRUD desde frontend.
+4. Crear producto.
+5. Subir imagen al producto con `POST /products/:id/images`.
+6. Consumir CRUD + imágenes desde frontend.
