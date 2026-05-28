@@ -13,6 +13,7 @@
     "incremental": true,
     "skipLibCheck": true,
     "strict": true,
-    "types": ["node", "multer"]
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node", "express", "multer"]
   }
 }

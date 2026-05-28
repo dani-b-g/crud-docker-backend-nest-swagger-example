@@ -17,6 +17,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductsService } from './products.service';
+import { File } from 'multer'
 
 @ApiTags('products')
 @ApiBearerAuth()
@@ -60,7 +61,7 @@ export class ProductsController {
       required: ['image'],
     },
   })
-  addImage(@Param('id') id: string, @UploadedFile() image?: Express.Multer.File) {
+  addImage(@Param('id') id: string, @UploadedFile() image?: File) {
     if (!image) throw new BadRequestException('Debes enviar una imagen');
     return this.productsService.addImage(id, image);
   }
