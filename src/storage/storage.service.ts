@@ -1,5 +1,6 @@
 import { Injectable, InternalServerErrorException, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Multer } from 'multer';
 
 @Injectable()
 export class StorageService implements OnModuleInit {
@@ -32,7 +33,7 @@ export class StorageService implements OnModuleInit {
 
     const uploadResponse = await fetch(`${this.internalUrl}/${this.bucketName}/${objectName}`, {
       method: 'PUT',
-      body: file.buffer,
+      body: new Uint8Array(file.buffer),      
       headers: {
         'Content-Type': file.mimetype,
       },
