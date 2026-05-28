@@ -33,7 +33,7 @@ export class StorageService implements OnModuleInit {
 
     const uploadResponse = await fetch(`${this.internalUrl}/${this.bucketName}/${objectName}`, {
       method: 'PUT',
-      body: file.buffer, // Buffer funciona en Node 18+
+      body: file.buffer.buffer, // ✅ ArrayBuffer para fetch
       headers: {
         'Content-Type': file.mimetype,
       },
